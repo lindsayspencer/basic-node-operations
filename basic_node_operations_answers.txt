@@ -1,0 +1,41 @@
+Basic Node Operations Answers 
+
+1. Run the commands `sort`, `wc` and `uniq` on the `command.js` file. Explain how they work and what the output was. 
+
+`sort`: It takes each line in a file and sorts them alphabetically by the first character in the line. The function works getting the data using the `fs.readFile()` method, then taking the data, splitting on the newline `\n` keyword, sorting the lines (which are our new array elements), joining the sorted array so it is still returned as string data, and returning the final string data. 
+
+`wc`: It counts the number of newlines, words, and bytes in a given file. Using the `fs.createReadStream()` method makes it possible to get both string and byte data. It uses a listener to wait for the data stream, which gets returned as a `chunk`. The chunk is the buffer data (containing an array of bytes), which can also be turned into a string. The length of the chunk is the number of bytes. Then, we can turn the chunk into a string to start counting newlines and words. I first split it on each charater then filtered it to count the newline `\n` indicators (otherwise it would count the first line as well). Then, I split it on the newline character to be able to get the word count for each line. I used a for loop to split and count the length of each line, adding it to my `wordCount` total each time. Then I passed all 3 pieces of data (line count, word count, and byte count) as my output.
+
+`uniq`: It returns distinct lines sorted. Using the `fs.readFile()` method, I first split the lines on the newline keyword. Then, using a for loop, I checked each line against its neighbor to remove (with the `splice()` method) neighboring duplicates. Once I'd removed duplicates, I sorted using the same method as in the `sort` method, and returned the joined results. 
+
+
+2. Using the pipe, connect at least two commands and run it on `commands.js`. Explain what the output was and why the specific data was outputted. 
+
+`cat commands.js | grep 'function'`: this reads the content of commands.js and prints out all lines with the word 'function'
+
+`cat commands.js | pbcopy`: this will copy the contents of commands.js to the clipboard.
+
+
+6. Programming challenge: Reverse String 
+
+// With suggested functions:
+
+const reverseString = (inputString) => {
+    let splitString = inputString.split("");
+    let reversed = [];
+    splitString.forEach((element) => {
+        reversed.push(element);
+    });
+    reversed.reverse();
+    let reversedString = reversed.join("");
+    return reversedString;
+}
+
+// Slightly more efficient:
+
+const reverseString = (inputString) => {
+    let splitString = inputString.split("");
+    splitString.reverse();
+    let reverseString = splitString.join("");
+    return reverseString;
+}
