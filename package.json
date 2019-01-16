@@ -1,0 +1,14 @@
+{
+  "name": "basic-node-operations",
+  "version": "1.0.0",
+  "description": "checkpoint basic node operations",
+  "main": "bash.js",
+  "scripts": {
+    "test": "console.log(\"working\")"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Lindsay Spencer",
+  "license": "ISC"
+}
